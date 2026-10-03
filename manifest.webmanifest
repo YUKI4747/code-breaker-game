@@ -1,0 +1,14 @@
+{
+  "id": "./",
+  "name": "CODE BREAKER — 数字推理ゲーム",
+  "short_name": "CODE BREAKER",
+  "description": "隠された4桁のコードを推理する頭脳ゲーム",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#10131c",
+  "theme_color": "#10131c",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10131c" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="CODE BREAKER" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <title>CODE BREAKER — 数字推理ゲーム</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Code Breaker ホーム">
+        <span class="brand-mark"><i></i><i></i><i></i><i></i></span>
+        <span>PUZZLE<span class="brand-dot">.</span>LAB</span>
+      </a>
+      <div class="top-meta"><span class="live-dot"></span> DAILY BRAIN TRAINING</div>
+      <button class="icon-button" id="help-button" aria-label="遊び方">?</button>
+    </header>
+
+    <section class="game-layout">
+      <aside class="intro">
+        <p class="eyebrow">LOGIC GAME <span>01 / 03</span></p>
+        <h1>CODE<br /><em>BREAKER</em></h1>
+        <p class="intro-copy">隠された4桁のコードを推理しよう。<br />手がかりを組み合わせて正解を導け。</p>
+        <div class="rule-card">
+          <div class="rule-title"><span class="rule-icon">⌘</span> ルール</div>
+          <p>1〜9の数字から、重複なしの4桁コードを当てよう。</p>
+          <div class="legend-row"><span class="legend-chip exact">●</span><span><b>位置も数字も正解</b><small>その数字は正しい位置</small></span></div>
+          <div class="legend-row"><span class="legend-chip exists">●</span><span><b>数字だけ正解</b><small>コード内にあるが位置が違う</small></span></div>
+        </div>
+        <div class="stats-card">
+          <div><small>残りの挑戦</small><strong id="tries-left">8</strong></div>
+          <div class="stats-divider"></div>
+          <div><small>ベスト</small><strong id="best-score">—</strong></div>
+        </div>
+      </aside>
+
+      <section class="board-card" aria-label="数字推理ゲーム">
+        <div class="board-head">
+          <div><p class="eyebrow">SECRET CODE</p><h2>コードを解読せよ</h2></div>
+          <span class="round-tag">ROUND <b id="round-number">01</b></span>
+        </div>
+
+        <div class="code-display" aria-label="入力中のコード">
+          <div class="code-slot active" data-slot="0"><span>_</span></div>
+          <div class="code-slot" data-slot="1"><span>_</span></div>
+          <div class="code-slot" data-slot="2"><span>_</span></div>
+          <div class="code-slot" data-slot="3"><span>_</span></div>
+        </div>
+        <p class="input-hint" id="input-hint">数字を選んでコードを入力</p>
+
+        <div class="keypad" aria-label="数字キー">
+          <button class="number-key" data-number="1">1</button>
+          <button class="number-key" data-number="2">2</button>
+          <button class="number-key" data-number="3">3</button>
+          <button class="number-key" data-number="4">4</button>
+          <button class="number-key" data-number="5">5</button>
+          <button class="number-key" data-number="6">6</button>
+          <button class="number-key" data-number="7">7</button>
+          <button class="number-key" data-number="8">8</button>
+          <button class="number-key" data-number="9">9</button>
+        </div>
+        <div class="action-row">
+          <button class="clear-button" id="clear-button">消す <span>⌫</span></button>
+          <button class="submit-button" id="submit-button" disabled>推理する <span>↗</span></button>
+        </div>
+
+        <div class="history-head"><span>推理ログ</span><span id="history-count">0 / 8</span></div>
+        <div class="history-list" id="history-list" aria-live="polite">
+          <div class="empty-state"><span class="empty-icon">⌁</span><span>最初の推理を入力しよう</span></div>
+        </div>
+      </section>
+    </section>
+
+    <footer><span>考えるほど、ひらめく。</span><span class="footer-right">DESIGNED FOR CURIOUS MINDS <b>✳</b></span></footer>
+  </main>
+
+  <div class="modal-backdrop hidden" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <button class="modal-close" id="modal-close" aria-label="閉じる">×</button>
+      <div class="modal-symbol" id="modal-symbol">✦</div>
+      <p class="eyebrow" id="modal-kicker">NICE WORK</p>
+      <h2 id="modal-title">コード解読成功！</h2>
+      <p id="modal-message">見事な推理！</p>
+      <div class="solution-code" id="solution-code"></div>
+      <button class="submit-button modal-action" id="new-game-button">もう一度遊ぶ <span>↗</span></button>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="game.js"></script>
+  <script>if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));</script>
+</body>
+</html>
