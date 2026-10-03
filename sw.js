@@ -1,5 +1,5 @@
-const CACHE = "code-breaker-v1";
-const FILES = ["./", "./index.html", "./style.css", "./game.js", "./manifest.webmanifest", "./icon.svg"];
+const CACHE = "code-breaker-v2";
+const FILES = ["./", "./index.html", "./style.css", "./game.js", "./manifest.webmanifest", "./icon.svg", "./lights.html", "./lights.js"];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(FILES)));
   self.skipWaiting();

@@ -105,3 +105,26 @@ footer { display:flex; justify-content:space-between; padding:17px 0 24px; borde
 @keyframes pop { from { opacity:0; transform:scale(.95) translateY(8px); } to { opacity:1; transform:scale(1) translateY(0); } }
 @media(max-width:760px) { .shell{width:min(520px,calc(100% - 28px))}.topbar{height:65px}.top-meta{font-size:8px}.game-layout{grid-template-columns:1fr;gap:27px;padding:32px 0 28px}.intro{padding-top:0}.intro h1{font-size:52px;margin:13px 0}.intro-copy{margin-bottom:17px}.rule-card{padding:14px}.rule-card>p{margin:9px 0 12px}.stats-card{height:61px;margin-top:8px}.board-card{padding:21px 17px}.keypad{gap:6px}.number-key{height:38px}.code-slot{width:48px;height:53px}.footer-right{font-size:7px} }
 @media(max-width:370px) { .board-card{padding:18px 12px}.keypad{gap:4px}.number-key{height:35px}.code-slot{width:44px} }
+
+
+/* Lights Out puzzle */
+.mode-link { color:var(--lime); text-decoration:none; border:1px solid #d0f47744; background:#d0f4770c; border-radius:7px; padding:8px 10px; font:500 9px "DM Mono",monospace; letter-spacing:.08em; white-space:nowrap; transition:.18s; }
+.mode-link span { margin-left:5px; }
+.mode-link:hover { background:#d0f4771d; border-color:#d0f47788; }
+.lights-title { font-size:clamp(52px,6vw,70px); }
+.lights-board { width:min(100%,390px); display:grid; grid-template-columns:repeat(5,1fr); gap:9px; margin:26px auto 16px; }
+.light-cell { aspect-ratio:1; padding:0; border:1px solid #333b4f; border-radius:13px; background:linear-gradient(145deg,#222737,#1a1e2b); box-shadow:inset 0 1px #ffffff08; transition:transform .13s,background .18s,border-color .18s,box-shadow .18s; touch-action:manipulation; }
+.light-cell:hover { transform:translateY(-2px); border-color:#768198; }
+.light-cell:focus-visible { outline:3px solid #fff; outline-offset:2px; }
+.light-cell.on { border-color:#e4ff9b; background:radial-gradient(circle at 50% 40%,#efffb3 0,#d0f477 42%,#9dc94f 100%); box-shadow:0 0 22px #d0f47755,inset 0 1px #ffffffaa; }
+.light-cell.on::after { content:""; display:block; width:18%; height:18%; margin:auto; border-radius:50%; background:#fff; box-shadow:0 0 12px #fff; }
+.puzzle-status { display:flex; align-items:center; justify-content:center; min-height:22px; color:#9199aa; font-size:11px; text-align:center; }
+.puzzle-actions { display:grid; grid-template-columns:1fr 1fr 1.3fr; gap:8px; margin-top:18px; }
+.puzzle-button { min-height:42px; border:1px solid #343b4c; border-radius:8px; background:#202533; color:#c6cbd5; font-size:10px; font-weight:700; transition:.18s; }
+.puzzle-button:hover:not(:disabled) { border-color:#738098; background:#282e3d; }
+.puzzle-button:disabled { opacity:.35; cursor:default; }
+.puzzle-button.primary { border:0; background:var(--lime); color:#202615; }
+.puzzle-button.primary:hover { background:#dcff8a; }
+.puzzle-tip { padding:11px 12px; border:1px solid #ffffff0d; border-radius:8px; color:#858da0; font-size:10px; line-height:1.7; margin-top:18px; }
+@media(max-width:760px) { .topbar{gap:8px}.top-meta{letter-spacing:.06em}.mode-link{font-size:8px;padding:7px}.lights-board{gap:7px;margin:21px auto 13px}.light-cell{border-radius:10px}.puzzle-actions{gap:6px}.puzzle-button{font-size:9px} }
+@media(max-width:370px) { .top-meta{display:none}.lights-board{gap:6px}.light-cell{border-radius:8px}.puzzle-actions{grid-template-columns:1fr 1fr}.puzzle-button.primary{grid-column:1/-1} }
